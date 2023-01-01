@@ -12,12 +12,12 @@ if (!defined('SAFE_TO_RUN')) {
 require 'credentials.php';
 
 // Check credentials
-if (empty($database_user) or $database_user == 'youroucuhere') {
-    die('$database_user in credentials.php is not set');
-}
-if (empty($database_password) or $database_password == 'YOURPASSWORDHERE') {
-    die('$database_password in credentials.php is not set');
-}
+// if (empty($database_user) or $database_user == 'root') {
+//     die('$database_user in credentials.php is not set');
+// }
+// if (empty($database_password) or $database_password == '') {
+//     die('$database_password in credentials.php is not set');
+// }
 
 // Connect to server and select database
 $database = mysqli_connect($database_host, $database_user, $database_password);

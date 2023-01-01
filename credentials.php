@@ -6,9 +6,10 @@
 
 // TODO: Change these to match your own TT284 database credentials
 // Note that it is important to use single quotes for the password variable
-$database_user = 'oucuhere';
-$database_password = 'PASSWORDHERE';
+$database_user = 'root';
+$database_password = '';
 
 // OPTIONAL: Edit these lines if you're using another database
 $database_host = 'localhost';
-$database_name = $database_user . '_db';
+$database_user_get = 'etsham';
+$database_name = $database_user_get . '_db';
