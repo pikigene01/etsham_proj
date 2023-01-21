@@ -64,6 +64,20 @@ if (strlen($value) > 50) {
     $feedback['email'] = 'Server feedback: Email must be 50 characters or less';
     $valid = false;
 }
+$value = $data['reference'];
+// ^$ = anchors, [a-zA-Z ] = letters/spaces, {1,30} = 1-30 characters
+$format = "/^[A-D].+\-[5,8].+[0-9]$/";
+// If value does NOT match the format then it is invalid
+if (!preg_match($format, $value)) {
+    $feedback['reference'] = 'Server feedback: three-letter group must be one of “ABC”, “ACD”, “BCD”';
+    $valid = false;
+}
+
+// Also check the maximum length for this field as filter_var doesn't do this
+if (strlen($value) > 9 || strlen($value) < 9) {
+    $feedback['email'] = 'your input length should not be greater than 9 or less';
+    $valid = false;
+}
 
 if (!$valid) {
     echo '<div class="report message always">Server message: Form data is invalid - please check and try again!</div>';

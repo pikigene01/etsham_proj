@@ -34,6 +34,7 @@ function validate(inputElement) {
     }
 
     var pattern; // regular expression to match input against
+    var length; // check length of the fields
     var feedback; // feedback about input if it is invalid
 
     // TODO: Change these patterns/feedback according to the inputs you expect
@@ -55,6 +56,12 @@ function validate(inputElement) {
         pattern = /^.+\@.+$/;
         feedback = "Only valid email addresses are permitted";
     }
+    if (inputElement.id == "reference") {
+        // ^$ = anchors, .+ = 1+ of any character, \@ = one @ symbol
+        pattern = /^[A-D].+\-[5,8].+[0-9]$/;
+        length = inputElement.value.length;
+        feedback = "three-letter group must be one of “ABC”, “ACD”, “BCD”";
+    }
 
     // Check that this is an input element we know how to validate
     if (!pattern) {
@@ -71,10 +78,26 @@ function validate(inputElement) {
 
     // Test the input value against the regular expression pattern
     if (pattern.test(value)) {
-        feedback = "Valid";
-        // Set the class attribute value of the feedback element to change its colour
-        feedbackElement.className = "valid";
-    } else {
+        if(inputElement.name == 'reference'){
+            if(length > 9 || length < 9) {
+                // Set the class attribute value of the feedback element to change its colour
+                feedbackElement.className = "invalid";
+                // The value is invalid
+                valid = false;
+                feedback = "your input length should not be greater than 9 or less ”";
+      
+            }else{
+                feedback = "Valid";
+                // Set the class attribute value of the feedback element to change its colour
+                feedbackElement.className = "valid";
+            }
+        }else{
+            feedback = "Valid";
+            // Set the class attribute value of the feedback element to change its colour
+            feedbackElement.className = "valid";
+        } 
+       
+    }else{
         // Set the class attribute value of the feedback element to change its colour
         feedbackElement.className = "invalid";
         // The value is invalid
@@ -100,6 +123,7 @@ function validateForm() {
     valid = valid && validate(document.getElementById("firstname"));
     valid = valid && validate(document.getElementById("lastname"));
     valid = valid && validate(document.getElementById("email"));
+    valid = valid && validate(document.getElementById("reference"));
 
     // Feedback if form cannot be submitted
     if (!valid) {

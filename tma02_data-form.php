@@ -8,6 +8,10 @@ if (!defined('SAFE_TO_RUN')) {
     // Prevent direct execution - show a warning instead
     die(basename(__FILE__)  . ' cannot be executed directly!');
 }
+$task = "";
+$checked = "";
+$data = [];
+$feedback = "";
 ?>
 
 <div class="report file">
@@ -31,7 +35,7 @@ if ($task == 'add' or $task == 'edit' or $task == 'save') {
 <label for="show_form">
     Show/Hide: Data entry form
 </label>
-<form method="POST" action="<?php _e($url); ?>" onsubmit="return validateForm()">
+<form method="POST" action="<?php _e($url); ?>" onsubmit="return validateForm()" >
     <input type="hidden" name="id" value="<?php _e($id) ?>" />
 
     <!-- TODO: Change these inputs according to the columns you expect -->
@@ -75,6 +79,19 @@ if ($task == 'add' or $task == 'edit' or $task == 'save') {
         />
         <span id="feedback_email" class="invalid">
             <?php _e($feedback, "email") ?>
+        </span>
+    </p>
+    <p>
+        <label for="reference">Booking Reference:</label>
+        <input
+            type="text"
+            id="reference"
+            name="reference"
+            value="<?php _e($data, "reference") ?>"
+            onchange="validate(event.target)"
+        />
+        <span id="feedback_reference" class="invalid">
+            <?php _e($feedback, "reference") ?>
         </span>
     </p>
 

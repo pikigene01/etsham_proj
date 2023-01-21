@@ -20,7 +20,7 @@ if (!defined('SAFE_TO_RUN')) {
 
 <?php
 // TODO: Change this SQL to read the columns you expect
-$sql = "SELECT id, firstname, lastname, email";
+$sql = "SELECT id, firstname, lastname, email, reference";
 $sql = $sql . " FROM $database_table";
 $sql = $sql . " WHERE firstname LIKE ? OR lastname LIKE ? OR email LIKE ?";
 $sql = $sql . " ORDER BY $sort $order";
@@ -74,6 +74,7 @@ if ($task == '' or $task == 'search') {
             <th>firstname</th>
             <th>lastname</th>
             <th>email</th>
+            <th>booking reference</th>
         </tr>
     </thead>
     <tbody>
@@ -84,6 +85,7 @@ if ($task == '' or $task == 'search') {
                 <td><?php _e($row, 'firstname') ?></td>
                 <td><?php _e($row, 'lastname') ?></td>
                 <td><?php _e($row, 'email') ?></td>
+                <td><?php _e($row, 'reference') ?></td>
                 <td>
                     <form method="POST" action="<?php _e($url); ?>">
                         <input type="hidden" name="id" value="<?php _e($row, 'id') ?>" />

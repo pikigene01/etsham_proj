@@ -12,7 +12,8 @@ define('SAFE_TO_RUN', true);
 
 // TODO: Change these values to configure the application
 $database_table = "tt284_guests"; // name of database table to read/write
-$app_title = 'TT284 Block 2 - CRUD App (TMA02)';
+$database_table = "tt284_oucu"; // name of database table to read/write
+$app_title = 'TT284 Block 2 - CRUD App (TMA02) Admin Page';
 $css_file = "tma02_admin.css"; // name of CSS file to load
 $js_file = "tma02_admin.js"; // name of JavaScript file to load
 
@@ -64,7 +65,6 @@ require "connect.php";
 
 <?php
 // Read column names from the database table into $columns
-require "tma02_read-columns.php";
 // Read the submitted form data into $data
 require 'tma02_read-post.php';
 
@@ -119,6 +119,8 @@ if ($task == 'delete') {
 // Now we have carried out tasks, output HTML forms and tables
 
 // Output a form to search or sort with
+require "tma02_read-columns.php";
+
 // This also processes search criteria used by the data table
 require "tma02_search-form.php";
 
@@ -127,6 +129,7 @@ require "tma02_data-table.php";
 
 // Output a form to enter or edit data (using $data and $id)
 require "tma02_data-form.php";
+
 ?>
 
 <div class="report">
